@@ -24,7 +24,7 @@ Nice to haves:
 create_puddle_table = """
 CREATE TABLE IF NOT EXISTS data_puddle (
     id                UUID      PRIMARY KEY,
-    ingested_at       TIMESTAMP NOT NULL,   -- timestamp of the data being logged into the system
+    ingested_at       TIMESTAMP NOT NULL,   -- timestamp of the data being logged into the system, in UNIX timestamp and millisecodns
     source            TEXT      NOT NULL,   -- where the data came from (telegram, scraper, rss)
     type              TEXT      NOT NULL,   -- type of the data, (json, har, txt) 
     original_filename TEXT,                 -- if available, store the original filename
@@ -45,6 +45,24 @@ SELECT id FROM data_puddle WHERE raw_text ~* ?
 """
 """SELCT id .. WHERE <REGEX> """
 
+insert_into_puddle = """
+INSERT INTO data_puddle (
+    id,
+    ingested_at, 
+    source, 
+    type, 
+    original_filename, 
+    content_type, 
+    timestamp, 
+    raw_bytes, 
+    raw_text, 
+    zone, 
+    owner
+) VALUES ( ?,?,?,?,?,?,?,?,?,?,? );
+"""
+"""
+id, ingested_at, source, type, original_filename, content_type, timestamp, raw_bytes, raw_text, zone, owner
+"""
 
 #
 #   Access tokens

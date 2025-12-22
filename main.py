@@ -27,7 +27,7 @@ CORS(app)
 @app.before_request
 def check_authentication():
     # While testing, we don't need the authentication tokens.
-    #abort(403)
+    #abort(401)
     
     return 
 
