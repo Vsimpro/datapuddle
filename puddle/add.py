@@ -6,18 +6,18 @@ from database import queries as sqlite_queries
 
 
 ENDPOINT = "/api/puddle/"
-PUDDLE   = Blueprint( "puddle", __name__, url_prefix = ENDPOINT )
+PUDDLE_ADD   = Blueprint( "puddle_add", __name__, url_prefix = ENDPOINT )
 
 
-@PUDDLE.route( "/health" ) 
+@PUDDLE_ADD.route( "/health" ) 
 def health(): return jsonify( { "status" : "ok" } ), 200
 
 
 #
 #   Interface
 #
-@PUDDLE.route( "/add",  methods = [ "POST" ] )
-@PUDDLE.route( "/add/", methods = [ "POST" ] )
+@PUDDLE_ADD.route( "/add",  methods = [ "POST" ] )
+@PUDDLE_ADD.route( "/add/", methods = [ "POST" ] )
 def add_data():
     """
     Endpoint:
@@ -112,7 +112,7 @@ def add_data():
         return jsonify( { "status" : "error" } ), 500
     
     # Double check for errors.
-    if not success:
+    if -1 == success:
         return jsonify( { "status" : "error" } ), 500
     
     # Data added!

@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS data_puddle (
 
 
 select_regex_match_eveything = """
-SELECT id FROM data_puddle WHERE raw_text ~* ?
+SELECT id FROM data_puddle WHERE raw_text REGEXP ?
 """
 """SELCT id .. WHERE <REGEX> """
 

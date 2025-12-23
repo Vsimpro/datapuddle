@@ -5,11 +5,19 @@
 *   I don't have NOTE comments on this.
 *
 """
-import os, sqlite3
+import re, os, sqlite3
 
 
 # Global Variables
 CONNECTION = None
+
+
+def regexp(expr, item):
+    """
+    Custom function for regex support
+    """
+    reg = re.compile(expr)
+    return reg.search(item) is not None
 
 
 def get_tables() -> list:
@@ -136,8 +144,6 @@ def insert_data( query:str, data ) -> int:
         CONNECTION.rollback()
         print( f"[SQLITE][!] Ran into an issue while running execute({ query }), with data {data}, details: ", e )
         return row_id
-    
-    return row_id
 
 
 def update_data( query:str, data ) -> tuple:
@@ -153,7 +159,7 @@ def update_data( query:str, data ) -> tuple:
     """
     
     global CONNECTION
- 
+    
     cursor = CONNECTION.cursor()
     
     try:
@@ -204,6 +210,7 @@ def initialize_db( tables, db_name : str = "data/database.db" ) -> bool:
         if not create_tables( tables ):
             return False
         
+        CONNECTION.create_function("REGEXP", 2, regexp) # add REGEXP
         print( "[SQLITE][>] Desired tables present." )
 
     except Exception as error:

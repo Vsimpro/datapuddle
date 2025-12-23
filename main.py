@@ -6,7 +6,8 @@ import os, dotenv; dotenv.load_dotenv()
 from flask import Flask, Blueprint, abort
 from flask_cors import CORS
 
-from puddle.api import PUDDLE as PUDDLE_API
+from puddle.add  import PUDDLE_ADD
+from puddle.find import PUDDLE_FIND
 
 from database import main    as sqlite
 from database import queries as sql_queries
@@ -18,7 +19,8 @@ DEBUG = os.getenv( "DEBUG" )
 
 
 app = Flask(__name__)
-app.register_blueprint( PUDDLE_API )
+app.register_blueprint( PUDDLE_ADD )
+app.register_blueprint( PUDDLE_FIND )
 
 # I'm lazy, let's allow everything! This _cant_ backfire.
 CORS(app)
