@@ -53,3 +53,15 @@ Optional:
     "zone" : <STRING> (raw, cleaned, curated)                       
     "owner" : <STRING> (who gave the data, who handles the data)    
 ```
+
+#### Find endpoint
+```
+GET or POST http://HOST/api/puddle/find
+```json
+Takes a JSON object of the following format: \n
+Required:  
+        "regex" : <STRING> (regex rule)
+    
+Returns:
+    json : list[ UUID ] - all the UUID's that match the regex rule
+```
