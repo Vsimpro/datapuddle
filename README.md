@@ -57,6 +57,7 @@ Optional:
 #### Find endpoint
 ```
 GET or POST http://HOST/api/puddle/find
+```
 ```json
 Takes a JSON object of the following format: \n
 Required:  
