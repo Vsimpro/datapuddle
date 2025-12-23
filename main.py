@@ -8,6 +8,7 @@ from flask_cors import CORS
 
 from puddle.add  import PUDDLE_ADD
 from puddle.find import PUDDLE_FIND
+from puddle.fetch import PUDDLE_FETCH
 
 from database import main    as sqlite
 from database import queries as sql_queries
@@ -21,6 +22,7 @@ DEBUG = os.getenv( "DEBUG" )
 app = Flask(__name__)
 app.register_blueprint( PUDDLE_ADD )
 app.register_blueprint( PUDDLE_FIND )
+app.register_blueprint( PUDDLE_FETCH )
 
 # I'm lazy, let's allow everything! This _cant_ backfire.
 CORS(app)
