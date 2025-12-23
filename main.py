@@ -3,8 +3,8 @@
 *   -Vs1m, 12/2025
 """
 import os, dotenv; dotenv.load_dotenv()
-from flask_cors import CORS
 from flask import Flask, Blueprint, abort
+from flask_cors import CORS
 
 from puddle.api import PUDDLE as PUDDLE_API
 
