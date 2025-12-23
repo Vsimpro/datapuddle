@@ -25,7 +25,7 @@ create_puddle_table = """
 CREATE TABLE IF NOT EXISTS data_puddle (
     id                UUID      PRIMARY KEY,
     ingested_at       TIMESTAMP NOT NULL,   -- timestamp of the data being logged into the system, in UNIX timestamp and millisecodns
-    source            TEXT      NOT NULL,   -- where the data came from (telegram, scraper, rss)
+    source            TEXT      NOT NULL,   -- where the data came from (http://t.me/..., http://forum.onion...,)
     type              TEXT      NOT NULL,   -- type of the data, (json, har, txt) 
     original_filename TEXT,                 -- if available, store the original filename
     content_type      TEXT,                 -- the mimetype of the content
@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS data_puddle (
     raw_text          TEXT,                 -- raw bytes turned into text, if possible.
 
     zone              TEXT DEFAULT 'raw',   -- is data RAW, CLEANED, or CURATED.  
-    owner             TEXT                  -- Who owns the data (vs1m, Vsimpro, Ville)
+    owner             TEXT                  -- What owns the data (Telegram Listener, Forum Scraper, RSS Listener)
 );
 """
 
