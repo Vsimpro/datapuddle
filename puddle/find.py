@@ -37,6 +37,8 @@ def find_by_regex():
     }
     regex_rule : str  = None    
     success    : bool = False 
+    start_timestamp   = None
+    end_timestamp     = None
     
     data : json = request.get_json()
     
@@ -46,11 +48,14 @@ def find_by_regex():
     
     regex_rule = data[ "regex" ]
     
+    start_timestamp = request.args.get( "start", type=int)  # None if missing
+    end_timestamp   = request.args.get( "end",   type=int)    # None if missing
+    
     try:
         
         rows = sqlite.query_database(
             sqlite_queries.select_regex_match_eveything,
-            ( regex_rule, )
+            ( regex_rule, start_timestamp, end_timestamp)
         )
         
         uuids = [ row[0] for row in rows ] #[(id,)] -> filter only first indexes of tuples in the list
