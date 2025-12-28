@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS data_puddle (
     type              TEXT      NOT NULL,   -- type of the data, (json, har, txt) 
     original_filename TEXT,                 -- if available, store the original filename
     content_type      TEXT,                 -- the mimetype of the content
-    timestamp         INTEGER,               -- if know, the original timestamp of the data (LinkedIn dump from 2012)
+    timestamp         INTEGER,              -- if know, the original timestamp of the data (LinkedIn dump from 2012)
 
     raw_bytes         BYTEA     NOT NULL,   -- raw bytes of the data. 
     raw_text          TEXT,                 -- raw bytes turned into text, if possible.

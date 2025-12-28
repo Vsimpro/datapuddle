@@ -49,7 +49,7 @@ def find_by_regex():
     regex_rule = data[ "regex" ]
     
     start_timestamp = request.args.get( "start", type=int)  # None if missing
-    end_timestamp   = request.args.get( "end",   type=int)    # None if missing
+    end_timestamp   = request.args.get( "end",   type=int)   # None if missing
     
     try:
         
